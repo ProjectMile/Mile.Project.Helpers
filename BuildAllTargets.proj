@@ -8,6 +8,6 @@
       Targets="Restore;Build"
       BuildInParallel="True"
       StopOnFirstFailure="True"
-      Properties="PreferredToolArchitecture=x64" />
+      Properties="PreferredToolArchitecture=x64;Configuration=Release;Platform=Any CPU" />
   </Target>
 </Project>
