@@ -3,6 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>default</LangVersion>
+    <Authors>Project Mile</Authors>
+    <Copyright>© Project Mile. All rights reserved.</Copyright>
+    <Description>The essential helper functions for the project maintaining tools.</Description>
+    <PackageProjectUrl>https://github.com/ProjectMile/Mile.Project.Helpers</PackageProjectUrl>
+    <Version>1.0.1</Version>
+    <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\License.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\ReadMe.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
