@@ -15,5 +15,12 @@ namespace Mile.Project.Helpers
                 File.ReadAllText(FilePath, InputEncoding),
                 OutputEncoding);
         }
+
+        public static void ConvertFileToUtf8(
+            string FilePath,
+            Encoding InputEncoding)
+        {
+            ConvertFileEncoding(FilePath, InputEncoding, new UTF8Encoding());
+        }
     }
 }
