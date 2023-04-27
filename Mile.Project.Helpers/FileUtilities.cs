@@ -48,5 +48,12 @@ namespace Mile.Project.Helpers
         {
             File.WriteAllText(FilePath, Contents, new UTF8Encoding());
         }
+
+        public static void SaveTextToFileAsUtf8Bom(
+            string FilePath,
+            string Contents)
+        {
+            File.WriteAllText(FilePath, Contents, Encoding.UTF8);
+        }
     }
 }
