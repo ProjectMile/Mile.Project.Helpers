@@ -22,5 +22,12 @@ namespace Mile.Project.Helpers
         {
             ConvertFileEncoding(FilePath, InputEncoding, new UTF8Encoding());
         }
+
+        public static void ConvertFileToUtf8Bom(
+            string FilePath,
+            Encoding InputEncoding)
+        {
+            ConvertFileEncoding(FilePath, InputEncoding, Encoding.UTF8);
+        }
     }
 }
