@@ -7,7 +7,7 @@
     <Copyright>© Project Mile. All rights reserved.</Copyright>
     <Description>The essential helper functions for the project maintaining tools.</Description>
     <PackageProjectUrl>https://github.com/ProjectMile/Mile.Project.Helpers</PackageProjectUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.$([System.DateTime]::Today.Subtract($([System.DateTime]::Parse('2023-03-28'))).TotalDays).0</Version>
     <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageLicenseFile>License.md</PackageLicenseFile>
