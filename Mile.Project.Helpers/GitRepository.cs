@@ -25,7 +25,7 @@ namespace Mile.Project.Helpers
                 if (process.ExitCode == 0)
                 {
                     string result = process.StandardOutput.ReadLine();
-                    if (string.IsNullOrEmpty(result))
+                    if (!string.IsNullOrEmpty(result))
                     {
                         return Path.GetFullPath(result);
                     }
