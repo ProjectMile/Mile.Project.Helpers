@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="13.9.1" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
   </ItemGroup>
 
 </Project>
