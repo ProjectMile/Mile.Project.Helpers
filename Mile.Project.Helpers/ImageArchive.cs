@@ -383,5 +383,28 @@ namespace Mile.Project.Helpers
 
             return Result;
         }
+
+        public static SortedSet<string> ListSymbols(
+            SortedDictionary<string, SortedSet<string>> Categories)
+        {
+            SortedSet<string> Result = new SortedSet<string>();
+            foreach (var Category in Categories)
+            {
+                foreach (var Item in Category.Value)
+                {
+                    Result.Add(Item);
+                }
+            }
+            return Result;
+        }
+
+        public static SortedSet<string> ListSymbols(
+            List<(string Key, string Value)> Symbols,
+            bool IsIntelArchitecture32 = false)
+        {
+            SortedDictionary<string, SortedSet<string>> SymbolCategories =
+                CategorizeSymbols(Symbols, IsIntelArchitecture32);
+            return ListSymbols(SymbolCategories);
+        }
     }
 }
