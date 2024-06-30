@@ -321,7 +321,8 @@ namespace Mile.Project.Helpers
         }
 
         public static SortedDictionary<string, SortedSet<string>> CategorizeSymbols(
-            List<(string Key, string Value)> Symbols)
+            List<(string Key, string Value)> Symbols,
+            bool IsIntelArchitecture32 = false)
         {
             SortedDictionary<string, SortedSet<string>> Result =
                 new SortedDictionary<string, SortedSet<string>>();
@@ -360,22 +361,23 @@ namespace Mile.Project.Helpers
                         TrimIndex = ImpSeparator.Length;
                     }
 
+                    string TrimmedName = Symbol.Key;
                     if (TrimIndex > 0)
                     {
-                        string FinalSymbolName =
-                            Symbol.Key.Substring(TrimIndex);
-                        Result[Symbol.Value].Add(string.Format(
+                        TrimmedName = TrimmedName.Substring(TrimIndex);
+                        TrimmedName = string.Format(
                             "{0}{1}",
-                            FinalSymbolName,
+                            TrimmedName,
                             -1 != Symbols.FindIndex(
-                                Symbol => Symbol.Key == FinalSymbolName)
+                                Symbol => Symbol.Key == TrimmedName)
                             ? string.Empty
-                            : " DATA"));
+                            : " DATA");
                     }
-                    else
-                    {
-                        Result[Symbol.Value].Add(Symbol.Key);
-                    }
+
+                    Result[Symbol.Value].Add(
+                        IsIntelArchitecture32
+                        ? TrimmedName.Substring(1)
+                        : TrimmedName);
                 }
             }
 
