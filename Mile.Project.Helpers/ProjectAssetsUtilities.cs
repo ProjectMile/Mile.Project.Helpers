@@ -130,8 +130,8 @@ namespace Mile.Project.Helpers
 
                     MagickImage targetImage = new MagickImage(
                         MagickColors.Transparent,
-                        item.Width,
-                        item.Height);
+                        Convert.ToUInt32(item.Width),
+                        Convert.ToUInt32(item.Height));
                     targetImage.Composite(
                         sourceImage,
                         Gravity.Center,
@@ -150,8 +150,8 @@ namespace Mile.Project.Helpers
 
                     MagickImage targetImage = new MagickImage(
                         MagickColors.Transparent,
-                        item.Width,
-                        item.Height);
+                        Convert.ToUInt32(item.Width),
+                        Convert.ToUInt32(item.Height));
                     targetImage.Composite(
                         sourceImage,
                         Gravity.Center,
@@ -170,8 +170,8 @@ namespace Mile.Project.Helpers
 
                     MagickImage targetImage = new MagickImage(
                         MagickColors.Transparent,
-                        item.Width,
-                        item.Height);
+                        Convert.ToUInt32(item.Width),
+                        Convert.ToUInt32(item.Height));
                     targetImage.Composite(
                         sourceImage,
                         Gravity.Center,
@@ -203,8 +203,8 @@ namespace Mile.Project.Helpers
 
                     MagickImage targetImage = new MagickImage(
                         MagickColors.Transparent,
-                        AssetSize,
-                        AssetSize);
+                        Convert.ToUInt32(AssetSize),
+                        Convert.ToUInt32(AssetSize));
                     targetImage.Composite(
                         sourceImage,
                         Gravity.Center,
