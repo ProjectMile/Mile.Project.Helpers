@@ -37,61 +37,117 @@ namespace Mile.Project.Helpers
             /// has a special interpretation, as described in the following
             /// table.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
-            public string Name;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+            private byte[] RawName;
 
             /// <summary>
             /// The date and time that the archive member was created: This is
             /// the ASCII decimal representation of the number of seconds since
             /// 1/1/1970 UCT.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 12)]
-            public string Date;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
+            private byte[] RawDate;
 
             /// <summary>
             /// An ASCII decimal representation of the user ID. This field does
             /// not contain a meaningful value on Windows platforms because
             /// Microsoft tools emit all blanks.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
-            public string UserID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
+            private byte[] RawUserID;
 
             /// <summary>
             /// An ASCII decimal representation of the group ID. This field does
             /// not contain a meaningful value on Windows platforms because
             /// Microsoft tools emit all blanks.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
-            public string GroupID;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
+            private byte[] RawGroupID;
 
             /// <summary>
             /// An ASCII octal representation of the member's file mode. This is
             /// the ST_MODE value from the C run-time function _wstat.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 8)]
-            public string Mode;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+            private byte[] RawMode;
 
             /// <summary>
             /// An ASCII decimal representation of the total size of the archive
             /// member, not including the size of the header.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 10)]
-            public string Size;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+            private byte[] RawSize;
 
             /// <summary>
             /// The two bytes (0x60 0x0A) in the C string "`\n"
             /// (<see cref="End"/>).
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2)]
-            public string EndHeader;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+            private byte[] RawEndHeader;
+
+            public string Name
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawName);
+                }
+            }
+
+            public string Date
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawDate);
+                }
+            }
+
+            public string UserID
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawUserID);
+                }
+            }
+
+            public string GroupID
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawGroupID);
+                }
+            }
+
+            public string Mode
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawMode);
+                }
+            }
+
+            public string Size
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawSize);
+                }
+            }
+
+            public string EndHeader
+            {
+                get
+                {
+                    return Encoding.ASCII.GetString(RawEndHeader);
+                }
+            }
         }
 
         private const int MemberHeaderSize = 60;
 
-        private static T? BytesToStructure<T>(byte[] Bytes)
+        private static T BytesToStructure<T>(byte[] Bytes)
         {
             GCHandle Handle = GCHandle.Alloc(Bytes, GCHandleType.Pinned);
-            T? Result = Marshal.PtrToStructure<T>(Handle.AddrOfPinnedObject());
+            T Result = Marshal.PtrToStructure<T>(Handle.AddrOfPinnedObject());
             Handle.Free();
             return Result;
         }
@@ -110,8 +166,8 @@ namespace Mile.Project.Helpers
             public int SecondLinkerIndex;
             public int LongnamesIndex;
             public int EcSymbolsIndex;
-            public List<(string Key, string Value)>? Symbols;
-            public List<(string Key, string Value)>? EcSymbols;
+            public List<(string Key, string Value)> Symbols;
+            public List<(string Key, string Value)> EcSymbols;
         }
 
         public static Archive Parse(
