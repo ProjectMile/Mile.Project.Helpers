@@ -399,6 +399,8 @@ namespace Mile.Project.Helpers
                 const string SharpSeparator = "#";
                 const string ImpAuxSeparator = "__imp_aux_";
                 const string ImpSeparator = "__imp_";
+                const string AuxImpCopySeparator = "__auximpcopy_";
+                const string ImpChkSeparator = "__impchk_";
 
                 if (Symbol.Key.StartsWith(SharpSeparator))
                 {
@@ -415,6 +417,14 @@ namespace Mile.Project.Helpers
                     else if (Symbol.Key.StartsWith(ImpSeparator))
                     {
                         TrimIndex = ImpSeparator.Length;
+                    }
+                    else if (Symbol.Key.StartsWith(AuxImpCopySeparator))
+                    {
+                        TrimIndex = AuxImpCopySeparator.Length;
+                    }
+                    else if (Symbol.Key.StartsWith(ImpChkSeparator))
+                    {
+                        TrimIndex = ImpChkSeparator.Length;
                     }
 
                     string TrimmedName = Symbol.Key;
