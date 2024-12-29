@@ -439,11 +439,14 @@ namespace Mile.Project.Helpers
                             ? string.Empty
                             : " DATA");
                     }
-
-                    Result[Symbol.Value].Add(
-                        IsIntelArchitecture32
-                        ? TrimmedName.Substring(1)
-                        : TrimmedName);
+                    if (IsIntelArchitecture32)
+                    {
+                        if (TrimmedName.StartsWith("_"))
+                        {
+                            TrimmedName = TrimmedName.Substring(1);
+                        }
+                    }
+                    Result[Symbol.Value].Add(TrimmedName);
                 }
             }
 
