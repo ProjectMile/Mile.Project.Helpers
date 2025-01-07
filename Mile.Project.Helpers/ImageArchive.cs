@@ -31,60 +31,33 @@ namespace Mile.Project.Helpers
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
         private struct MemberHeader
         {
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+            private byte[] RawName;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
+            private byte[] RawDate;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
+            private byte[] RawUserID;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
+            private byte[] RawGroupID;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+            private byte[] RawMode;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+            private byte[] RawSize;
+
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+            private byte[] RawEndHeader;
+
             /// <summary>
             /// The name of the archive member, with a slash (/) appended to
             /// terminate the name. If the first character is a slash, the name
             /// has a special interpretation, as described in the following
             /// table.
             /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-            private byte[] RawName;
-
-            /// <summary>
-            /// The date and time that the archive member was created: This is
-            /// the ASCII decimal representation of the number of seconds since
-            /// 1/1/1970 UCT.
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-            private byte[] RawDate;
-
-            /// <summary>
-            /// An ASCII decimal representation of the user ID. This field does
-            /// not contain a meaningful value on Windows platforms because
-            /// Microsoft tools emit all blanks.
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
-            private byte[] RawUserID;
-
-            /// <summary>
-            /// An ASCII decimal representation of the group ID. This field does
-            /// not contain a meaningful value on Windows platforms because
-            /// Microsoft tools emit all blanks.
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)]
-            private byte[] RawGroupID;
-
-            /// <summary>
-            /// An ASCII octal representation of the member's file mode. This is
-            /// the ST_MODE value from the C run-time function _wstat.
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            private byte[] RawMode;
-
-            /// <summary>
-            /// An ASCII decimal representation of the total size of the archive
-            /// member, not including the size of the header.
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
-            private byte[] RawSize;
-
-            /// <summary>
-            /// The two bytes (0x60 0x0A) in the C string "`\n"
-            /// (<see cref="End"/>).
-            /// </summary>
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-            private byte[] RawEndHeader;
-
             public string Name
             {
                 get
@@ -93,6 +66,11 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// The date and time that the archive member was created: This is
+            /// the ASCII decimal representation of the number of seconds since
+            /// 1/1/1970 UCT.
+            /// </summary>
             public string Date
             {
                 get
@@ -101,6 +79,11 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// An ASCII decimal representation of the user ID. This field does
+            /// not contain a meaningful value on Windows platforms because
+            /// Microsoft tools emit all blanks.
+            /// </summary>
             public string UserID
             {
                 get
@@ -109,6 +92,11 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// An ASCII decimal representation of the group ID. This field does
+            /// not contain a meaningful value on Windows platforms because
+            /// Microsoft tools emit all blanks.
+            /// </summary>
             public string GroupID
             {
                 get
@@ -117,6 +105,10 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// An ASCII octal representation of the member's file mode. This is
+            /// the ST_MODE value from the C run-time function _wstat.
+            /// </summary>
             public string Mode
             {
                 get
@@ -125,6 +117,10 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// An ASCII decimal representation of the total size of the archive
+            /// member, not including the size of the header.
+            /// </summary>
             public string Size
             {
                 get
@@ -133,6 +129,10 @@ namespace Mile.Project.Helpers
                 }
             }
 
+            /// <summary>
+            /// The two bytes (0x60 0x0A) in the C string "`\n"
+            /// (<see cref="End"/>).
+            /// </summary>
             public string EndHeader
             {
                 get
